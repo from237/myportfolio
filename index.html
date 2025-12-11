@@ -84,7 +84,7 @@
         .exp-header { margin-bottom: 12px; }
         .period { display: block; font-size: 0.85rem; color: var(--accent-color); font-weight: 600; margin-bottom: 4px; }
         
-        /* 회사 로고 스타일 (20% 확대: 45px -> 54px) */
+        /* 회사 로고 */
         .company-wrap { display: flex; align-items: center; margin-bottom: 8px; }
         .company-logo { 
             width: 54px; 
@@ -103,36 +103,42 @@
 
         /* 프로젝트 카드 */
         .project-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 30px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); border-color: var(--accent-color); }
         
-        /* 프로젝트 이미지 높이 확대 (300px) */
+        /* [수정됨] 프로젝트 이미지 영역: 높이 제한 해제, 클릭 가능 표시 */
         .project-img-area { 
             width: 100%; 
-            height: 300px;
+            height: auto; /* 이미지 비율대로 자동 조절 */
             background-color: #f1f5f9; 
             overflow: hidden; 
             position: relative; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-size: 0.9rem;
+            cursor: zoom-in; /* 돋보기 커서 */
         }
+        
+        /* [수정됨] 프로젝트 이미지: 꽉 차게 보이기 */
         .project-img-area img { 
             width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
+            height: auto; 
+            object-fit: contain; /* 잘리지 않고 다 보임 */
             display: block; 
         }
-        .project-img-area img:after {
-            content: attr(alt);
+        
+        /* 클릭 확대 안내 아이콘 */
+        .project-img-area::after {
+            content: '🔍 클릭하여 확대';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .project-img-area:hover::after {
+            opacity: 1;
         }
 
         .project-content { padding: 25px; }
@@ -148,6 +154,48 @@
         .list-date { font-size: 0.9rem; color: var(--accent-color); font-weight: 600; white-space: nowrap; margin-left: 15px; }
 
         footer { text-align: center; padding: 40px 20px 20px; font-size: 0.8rem; color: #94a3b8; background-color: #fff; }
+
+        /* [추가됨] 이미지 확대 모달(팝업) 스타일 */
+        .modal {
+            display: none; /* 기본 숨김 */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.2s;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0} 
+            to {opacity: 1}
+        }
     </style>
 </head>
 <body>
@@ -235,8 +283,8 @@
         <h2>Key Projects</h2>
 
         <div class="project-card">
-            <div class="project-img-area">
-                <img src="brandk.jpg" alt="[이미지 파일이 필요합니다: brandk.jpg]">
+            <div class="project-img-area" onclick="openModal(this)">
+                <img src="brandk.jpg" alt="Brand K 런칭쇼">
             </div>
             <div class="project-content">
                 <div class="project-title">국가대표 공동브랜드 'Brand K' 런칭쇼</div>
@@ -250,8 +298,8 @@
         </div>
 
         <div class="project-card">
-            <div class="project-img-area">
-                <img src="funding.jpg" alt="[이미지 파일이 필요합니다: funding.jpg]">
+            <div class="project-img-area" onclick="openModal(this)">
+                <img src="funding.jpg" alt="같이펀딩 태극기함">
             </div>
             <div class="project-content">
                 <div class="project-title">MBC 예능 '같이펀딩' 태극기함 프로젝트</div>
@@ -265,8 +313,8 @@
         </div>
         
         <div class="project-card">
-            <div class="project-img-area">
-                <img src="tv_project.png" alt="AI 송출 다원화">
+            <div class="project-img-area" onclick="openModal(this)">
+                <img src="tv_project.jpg" alt="AI 송출 다원화">
             </div>
             <div class="project-content">
                 <div class="project-title">AI 송출 다원화 프로젝트</div>
@@ -280,8 +328,8 @@
         </div>
 
         <div class="project-card">
-            <div class="project-img-area">
-                <img src="profit.png" alt="한계이익 시뮬레이션">
+            <div class="project-img-area" onclick="openModal(this)">
+                <img src="profit.jpg" alt="한계이익 시뮬레이션">
             </div>
             <div class="project-content">
                 <div class="project-title">한계이익 시뮬레이션 시스템 구축</div>
@@ -295,8 +343,8 @@
         </div>
 
         <div class="project-card">
-            <div class="project-img-area">
-                <img src="call_project.png" alt="콜센터 상담원 최적화">
+            <div class="project-img-area" onclick="openModal(this)">
+                <img src="call_project.jpg" alt="콜센터 상담원 최적화">
             </div>
             <div class="project-content">
                 <div class="project-title">콜센터 상담원 최적화 프로젝트</div>
@@ -378,6 +426,27 @@
         &copy; 2025 Jongbaek Kim. All rights reserved.
     </footer>
 </div>
+
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+</div>
+
+<script>
+    function openModal(element) {
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("modalImg");
+        var img = element.querySelector('img');
+        
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+    }
+
+    function closeModal() {
+        var modal = document.getElementById("imageModal");
+        modal.style.display = "none";
+    }
+</script>
 
 </body>
 </html>
