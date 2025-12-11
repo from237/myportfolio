@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김종백 | AI & DX Strategy Manager</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        :root {
+            --primary-color: #00305b; /* 신뢰감을 주는 네이비 */
+            --accent-color: #00bf8e; /* 포인트 컬러 (AI/Tech 느낌) */
+            --bg-color: #f8f9fa;
+            --text-main: #333333;
+            --text-sub: #666666;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 모바일 레이아웃 컨테이너 */
+        .container {
+            max-width: 600px; /* 모바일 폭 제한 */
+            margin: 0 auto;
+            background-color: var(--white);
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        /* 헤더 영역 */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #001f3f);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            border: 4px solid rgba(255,255,255,0.3);
+            margin: 0 auto 20px;
+            object-fit: cover;
+            /* 이미지가 없을 때를 위한 기본 아이콘 처리 */
+            background-image: url('profile.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .role {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            background-color: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        /* 공통 섹션 스타일 */
+        section {
+            padding: 30px 20px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 20px;
+            background-color: var(--accent-color);
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        /* 자기소개 */
+        .intro-text {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            text-align: justify;
+        }
+
+        /* 스킬 태그 */
+        .skills-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: #f1f3f5;
+            color: var(--primary-color);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* 경력 타임라인 */
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            border-left: 2px solid #e9ecef;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .period {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .company {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .position {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .desc-list {
+            list-style: none;
+        }
+
+        .desc-list li {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .desc-list li::before {
+            content: '-';
+            position: absolute;
+            left: 0;
+            color: var(--text-sub);
+        }
+
+        /* 프로젝트 카드 */
+        .project-card {
+            background: var(--white);
+            border: 1px solid #eeeeee;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .project-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        /* 학력 */
+        .edu-item {
+            margin-bottom: 15px;
+        }
+        .edu-school { font-weight: 700; font-size: 1rem; }
+        .edu-major { font-size: 0.9rem; color: var(--text-sub); }
+
+        /* 하단 버튼 */
+        .contact-section {
+            text-align: center;
+            background-color: #f8f9fa;
+            padding-bottom: 60px;
+        }
+
+        .btn-email {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,48,91,0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn-email:active {
+            transform: scale(0.98);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 20px;
+            background-color: var(--white);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="profile-img"></div>
+        <h1>김종백 (Jongbaek Kim)</h1>
+        <div class="role">AI Strategy & Business Planning Manager</div>
+        <div class="tagline">"비즈니스와 기술을 잇는 통역사"</div>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p class="intro-text">
+            데이터와 비즈니스 인사이트를 결합하여 기업의 디지털 전환(DX)과 성장을 이끄는 기획자입니다.
+            다양한 실무 경험을 통해 비즈니스의 생리를 이해하고, 석사 과정을 통해 기술의 원리를 체득했습니다.
+            [cite_start][cite: 302] 모호한 비즈니스 요구사항을 명확한 기술 요건으로 구체화하여, 성공적인 프로젝트를 리딩합니다.
+        </p>
+    </section>
+
+    <section id="skills">
+        <h2>Core Competency</h2>
+        <div class="skills-wrapper">
+            <span class="skill-tag">AI Strategy</span>
+            <span class="skill-tag">Digital Transformation</span>
+            <span class="skill-tag">Data Analysis</span>
+            <span class="skill-tag">P&L Management</span>
+            <span class="skill-tag">Python/SQL</span>
+            <span class="skill-tag">Process Innovation</span>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Professional Experience</h2>
+
+        <div class="timeline-item">
+            <span class="period">2019.12 - Present</span>
+            <div class="company">SK 스토아 (SK Stoa)</div>
+            <span class="position">Manager | 경영기획, 커머스기획</span>
+            <ul class="desc-list">
+                [cite_start]<li>비즈니스 환경 분석 기반 전사 AI 전략 및 DX 로드맵 수립 [cite: 204]</li>
+                [cite_start]<li>차세대 시스템(커머스 프로세스) 구축 PI 및 변화 관리 주도 [cite: 339]</li>
+                [cite_start]<li>비즈니스 모델별 손익 분석 및 AI 기술 활용 비용 최적화 [cite: 212]</li>
+                [cite_start]<li>SK 그룹사 Data Dam 구축 및 데이터 연계 프로젝트 참여 [cite: 344]</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item">
+            <span class="period">2015.03 - 2019.12</span>
+            <div class="company">공영홈쇼핑</div>
+            <span class="position">Assistant Manager | 편성전략, 법인설립</span>
+            <ul class="desc-list">
+                [cite_start]<li>데이터 기반 편성 최적화 및 채널 퍼포먼스 관리 [cite: 232]</li>
+                [cite_start]<li>국가 프로젝트 '브랜드 K' 런칭 및 대외 협력 프로모션 총괄 [cite: 245]</li>
+                [cite_start]<li>신규 법인 설립 참여 및 초기 운영 인프라 구축 [cite: 236]</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item">
+            <span class="period">2012.01 - 2013.07</span>
+            <div class="company">한국공항 (KAS)</div>
+            <span class="position">Staff | 경영지원</span>
+            <ul class="desc-list">
+                [cite_start]<li>IR 공시 대응 및 사업계획/실적 관리 [cite: 265]</li>
+                [cite_start]<li>사업부별 관리손익 분석 및 수익성 개선 인사이트 도출 [cite: 274]</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Key Projects</h2>
+
+        <div class="project-card">
+            <div class="project-title">AI 개인화 방송 시스템 구축</div>
+            <div class="project-desc">
+                고객 행동 데이터를 분석하여 개인화 추천 알고리즘 도입. [cite_start]고객별 맞춤형 상품 송출을 통해 구매 전환 유도 및 전사 매출 상승 견인[cite: 26, 27].
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-title">AI 수요 예측 기반 상담원 운영 최적화</div>
+            <div class="project-desc">
+                주문량 변동 예측 모델 도입으로 상담 인력 배치 최적화. [cite_start]잉여 인력 최소화 및 고객 대기 시간 단축을 통한 운영 효율화 달성[cite: 29, 30].
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-title">차세대 커머스 프로세스 개선 (PI)</div>
+            <div class="project-desc">
+                입점에서 송출까지의 반복 업무 간소화 및 데이터 서열 재정비. [cite_start]판매/비용 데이터 연계를 통한 손익 분석 자동화 시스템 구현[cite: 341, 342].
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="edu-item">
+            <div class="edu-school">서강대학교 (Sogang Univ.)</div>
+            <div class="edu-major">AI·SW대학원 데이터사이언스 석사 (2024.08 졸업)</div>
+        </div>
+        <div class="edu-item">
+            <div class="edu-school">한국외국어대학교 (HUFS)</div>
+            <div class="edu-major">법학과 학사 (2012.02 졸업)</div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <a href="mailto:smile4menow@naver.com" class="btn-email">Contact Me</a>
+    </section>
+
+    <footer>
+        &copy; 2025 Jongbaek Kim. All rights reserved.
+    </footer>
+</div>
+
+</body>
+</html>
