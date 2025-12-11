@@ -36,7 +36,7 @@
             background-color: var(--white);
             min-height: 100vh;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            padding-bottom: 20px; /* 푸터 여백 */
+            padding-bottom: 20px;
         }
 
         /* 헤더 */
@@ -83,7 +83,12 @@
         
         .exp-header { margin-bottom: 12px; }
         .period { display: block; font-size: 0.85rem; color: var(--accent-color); font-weight: 600; margin-bottom: 4px; }
+        
+        /* 회사 로고 및 이름 영역 수정 */
+        .company-wrap { display: flex; align-items: center; margin-bottom: 4px; }
+        .company-logo { width: 40px; height: 40px; border-radius: 8px; margin-right: 12px; object-fit: contain; background-color: #fff; border: 1px solid var(--border); }
         .company { font-size: 1.1rem; font-weight: 700; color: var(--primary-color); }
+
         .position { font-size: 0.95rem; color: var(--text-sub); }
         .exp-desc li { font-size: 0.95rem; color: var(--text-main); margin-bottom: 8px; padding-left: 15px; position: relative; list-style: none; word-break: keep-all; }
         .exp-desc li::before { content: '•'; position: absolute; left: 0; color: var(--accent-color); }
@@ -92,7 +97,8 @@
         .project-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 25px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); border-color: var(--accent-color); }
         
-        .project-img-area { width: 100%; height: 160px; background-color: #e2e8f0; overflow: hidden; position: relative; }
+        /* 프로젝트 이미지 영역 높이 수정 (160px -> 220px) */
+        .project-img-area { width: 100%; height: 220px; background-color: #e2e8f0; overflow: hidden; position: relative; }
         .project-img-area img { width: 100%; height: 100%; object-fit: cover; }
         
         .project-content { padding: 24px; }
@@ -148,7 +154,10 @@
         <div class="timeline-item">
             <div class="exp-header">
                 <span class="period">2019.12 - Present</span>
-                <div class="company">SK 스토아 (SK Stoa)</div>
+                <div class="company-wrap">
+                    <img src="logo_skstoa.png" alt="SK Stoa 로고" class="company-logo">
+                    <div class="company">SK 스토아 (SK Stoa)</div>
+                </div>
                 <span class="position">Manager | 경영기획팀 & 커머스기획팀</span>
             </div>
             <ul class="exp-desc">
@@ -161,7 +170,10 @@
         <div class="timeline-item">
             <div class="exp-header">
                 <span class="period">2015.03 - 2019.12</span>
-                <div class="company">공영홈쇼핑</div>
+                <div class="company-wrap">
+                    <img src="gongyoung.jpg" alt="공영홈쇼핑 로고" class="company-logo">
+                    <div class="company">공영홈쇼핑</div>
+                </div>
                 <span class="position">Assistant Manager | 편성전략팀 & 법인설립팀</span>
             </div>
             <ul class="exp-desc">
@@ -174,7 +186,10 @@
         <div class="timeline-item">
             <div class="exp-header">
                 <span class="period">2012.01 - 2013.07</span>
-                <div class="company">한국공항 (KAS)</div>
+                <div class="company-wrap">
+                    <img src="kas.png" alt="한국공항 로고" class="company-logo">
+                    <div class="company">한국공항 (KAS)</div>
+                </div>
                 <span class="position">Staff | 경영지원팀</span>
             </div>
             <ul class="exp-desc">
@@ -192,8 +207,7 @@
             </div>
             <div class="project-content">
                 <div class="project-title">국가대표 공동브랜드 'Brand K' 런칭쇼</div>
-                <span class="project-tag">National Project</span>
-                <span class="project-tag">Media Commerce</span>
+                <span class="project-tag">Government Project</span> <span class="project-tag">Media Commerce</span>
                 <p class="project-desc">
                     중소벤처기업부 주관 대한민국 국가대표 공동브랜드 런칭쇼 기획 및 편성 총괄. 
                     장관 출연 라이브 커머스 프로그램을 기획하여 중소기업 우수 제품의 판로를 개척하고, 국가 정책 이벤트의 성공적 이행을 주도했습니다.
@@ -207,9 +221,7 @@
             </div>
             <div class="project-content">
                 <div class="project-title">MBC 예능 '같이펀딩' 태극기함 프로젝트</div>
-                <span class="project-tag">Collaboration</span>
-                <span class="project-tag">Social Impact</span>
-                <p class="project-desc">
+                <span class="project-tag">Influencer Collaboration</span> <span class="project-tag">Social Contribution</span> <p class="project-desc">
                     MBC(김태호PD), 11번가와 협업한 대형 미디어 커머스 프로젝트. 
                     유준상 배우와 함께한 '태극기함' 크라우드 펀딩을 홈쇼핑 라이브로 연결하여, 태극기 1만 개 완판 기록 및 사회적 가치를 창출했습니다.
                 </p>
