@@ -7,8 +7,8 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
         :root {
-            --primary-color: #0f172a; /* 짙은 네이비 (비즈니스/신뢰) */
-            --accent-color: #2563eb; /* 선명한 블루 (전략/테크) */
+            --primary-color: #0f172a;
+            --accent-color: #2563eb;
             --bg-color: #f8fafc;
             --text-main: #1e293b;
             --text-sub: #64748b;
@@ -36,9 +36,10 @@
             background-color: var(--white);
             min-height: 100vh;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding-bottom: 20px; /* 푸터 여백 */
         }
 
-        /* 헤더 스타일 */
+        /* 헤더 */
         header {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: var(--white);
@@ -59,229 +60,54 @@
             background-position: center;
         }
 
-        h1 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
+        h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .role { font-size: 0.95rem; color: #94a3b8; font-weight: 400; margin-bottom: 20px; }
+        .tagline { display: inline-block; background: rgba(37, 99, 235, 0.2); color: #60a5fa; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
 
-        .role {
-            font-size: 0.95rem;
-            color: #94a3b8;
-            font-weight: 400;
-            margin-bottom: 20px;
-        }
+        /* 섹션 */
+        section { padding: 40px 25px; border-bottom: 1px solid var(--border); }
+        h2 { font-size: 1.25rem; color: var(--primary-color); margin-bottom: 25px; font-weight: 700; display: flex; align-items: center; letter-spacing: -0.3px; }
+        h2::after { content: ''; flex: 1; height: 1px; background-color: var(--border); margin-left: 15px; }
 
-        .tagline {
-            display: inline-block;
-            background: rgba(37, 99, 235, 0.2);
-            color: #60a5fa;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
+        /* 본문 */
+        .intro-text { font-size: 1rem; color: var(--text-main); text-align: justify; word-break: keep-all; }
+        
+        /* 스킬 */
+        .skills-wrapper { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-tag { background-color: #f1f5f9; color: #334155; padding: 8px 14px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--border); }
 
-        /* 섹션 공통 */
-        section {
-            padding: 40px 25px;
-            border-bottom: 1px solid var(--border);
-        }
+        /* 경력 */
+        .timeline-item { position: relative; padding-left: 24px; padding-bottom: 40px; border-left: 2px solid #e2e8f0; }
+        .timeline-item:last-child { padding-bottom: 0; border-left: 2px solid transparent; }
+        .timeline-item::before { content: ''; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; border-radius: 50%; background-color: var(--accent-color); border: 3px solid var(--white); box-shadow: 0 0 0 1px var(--accent-color); }
+        
+        .exp-header { margin-bottom: 12px; }
+        .period { display: block; font-size: 0.85rem; color: var(--accent-color); font-weight: 600; margin-bottom: 4px; }
+        .company { font-size: 1.1rem; font-weight: 700; color: var(--primary-color); }
+        .position { font-size: 0.95rem; color: var(--text-sub); }
+        .exp-desc li { font-size: 0.95rem; color: var(--text-main); margin-bottom: 8px; padding-left: 15px; position: relative; list-style: none; word-break: keep-all; }
+        .exp-desc li::before { content: '•'; position: absolute; left: 0; color: var(--accent-color); }
 
-        h2 {
-            font-size: 1.25rem;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            letter-spacing: -0.3px;
-        }
+        /* 프로젝트 카드 */
+        .project-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 25px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); border-color: var(--accent-color); }
+        
+        .project-img-area { width: 100%; height: 160px; background-color: #e2e8f0; overflow: hidden; position: relative; }
+        .project-img-area img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .project-content { padding: 24px; }
+        .project-title { font-size: 1.1rem; font-weight: 700; color: var(--primary-color); margin-bottom: 8px; }
+        .project-tag { display: inline-block; font-size: 0.75rem; background-color: #eff6ff; color: var(--accent-color); padding: 4px 8px; border-radius: 4px; font-weight: 600; margin-bottom: 12px; }
+        .project-desc { font-size: 0.95rem; color: var(--text-main); text-align: justify; word-break: keep-all; }
 
-        h2::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background-color: var(--border);
-            margin-left: 15px;
-        }
+        /* 학력 */
+        .edu-item { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: baseline; }
+        .edu-info { flex: 1; }
+        .edu-school { font-size: 1.05rem; font-weight: 700; color: var(--primary-color); }
+        .edu-degree { font-size: 0.95rem; color: var(--text-main); margin-top: 2px; }
+        .edu-date { font-size: 0.9rem; color: var(--accent-color); font-weight: 600; white-space: nowrap; margin-left: 15px; }
 
-        /* About Me */
-        .intro-text {
-            font-size: 1rem;
-            color: var(--text-main);
-            text-align: justify;
-            word-break: keep-all;
-        }
-        .intro-highlight {
-            color: var(--accent-color);
-            font-weight: 700;
-        }
-
-        /* Skills */
-        .skills-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .skill-tag {
-            background-color: #f1f5f9;
-            color: #334155;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid var(--border);
-        }
-
-        /* Experience (Timeline) */
-        .timeline-item {
-            position: relative;
-            padding-left: 24px;
-            padding-bottom: 40px;
-            border-left: 2px solid #e2e8f0;
-        }
-        .timeline-item:last-child {
-            padding-bottom: 0;
-            border-left: 2px solid transparent;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -7px;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--accent-color);
-            border: 3px solid var(--white);
-            box-shadow: 0 0 0 1px var(--accent-color);
-        }
-
-        .exp-header {
-            margin-bottom: 12px;
-        }
-        .period {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .company {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        .position {
-            font-size: 0.95rem;
-            color: var(--text-sub);
-        }
-        .exp-desc li {
-            font-size: 0.95rem;
-            color: var(--text-main);
-            margin-bottom: 8px;
-            padding-left: 15px;
-            position: relative;
-            list-style: none;
-            word-break: keep-all;
-        }
-        .exp-desc li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-        }
-
-        /* Projects */
-        .project-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 20px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            border-color: var(--accent-color);
-        }
-        .project-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 8px;
-        }
-        .project-tag {
-            display: inline-block;
-            font-size: 0.75rem;
-            background-color: #eff6ff;
-            color: var(--accent-color);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .project-desc {
-            font-size: 0.95rem;
-            color: var(--text-main);
-            text-align: justify;
-            word-break: keep-all;
-        }
-
-        /* Education */
-        .edu-item {
-            margin-bottom: 20px;
-        }
-        .edu-school {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        .edu-degree {
-            font-size: 0.95rem;
-            color: var(--text-main);
-            margin-top: 2px;
-        }
-        .edu-detail {
-            font-size: 0.85rem;
-            color: var(--text-sub);
-            margin-top: 4px;
-        }
-
-        /* Contact */
-        .contact-section {
-            text-align: center;
-            background-color: #f1f5f9;
-            padding: 60px 25px;
-            border-bottom: none;
-        }
-        .btn-contact {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 16px 48px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-            transition: all 0.2s;
-        }
-        .btn-contact:hover {
-            background-color: #1d4ed8;
-            transform: scale(1.02);
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            font-size: 0.8rem;
-            color: #94a3b8;
-            background-color: #fff;
-        }
+        footer { text-align: center; padding: 40px 20px 20px; font-size: 0.8rem; color: #94a3b8; background-color: #fff; }
     </style>
 </head>
 <body>
@@ -300,7 +126,7 @@
             <strong>"모호한 비즈니스 니즈를 명확한 기술 언어로 번역합니다."</strong><br><br>
             경영 전략과 손익(P&L) 관리 경험을 바탕으로 실질적인 비즈니스 가치를 창출하는 AI 사업 기획자입니다.
             단순한 기술 도입을 넘어, 기업의 수익 구조를 개선하고 프로세스를 혁신(PI)하는 <strong>AI 비즈니스 모델</strong>을 설계합니다.
-            전사 중장기 전략 수립부터 AI 서비스 상용화까지, 비즈니스와 개발 조직 사이의 간극을 메우고 프로젝트 성공 확률을 높이는 역할을 수행합니다.
+            국가 주도 대형 프로젝트부터 AI 서비스 상용화까지, 비즈니스와 개발 조직 사이의 간극을 메우고 프로젝트 성공 확률을 높이는 역할을 수행합니다.
         </p>
     </section>
 
@@ -328,8 +154,7 @@
             <ul class="exp-desc">
                 <li><strong>전사 AI 전략 및 DX 로드맵 수립:</strong> 시장 환경 분석을 기반으로 중장기 AI 도입 전략을 설계하고, 디지털 전환 과제 발굴 및 이행 관리 총괄.</li>
                 <li><strong>전략적 손익(P&L) 관리:</strong> 비즈니스 모델별 손익 구조를 진단하고, AI/Data 기술을 활용한 비용 구조 최적화 및 신규 매출원 발굴 주도.</li>
-                <li><strong>차세대 커머스 시스템 PI (Process Innovation):</strong> 상품 소싱부터 방송 송출까지 전체 밸류체인의 프로세스 비효율을 진단하고, 시스템 재설계를 통해 운영 비용 절감 및 업무 효율성 30% 개선.</li>
-                <li><strong>SK 그룹 Data Dam 프로젝트:</strong> SKT, 11번가 등 계열사 간 데이터 결합 프로젝트에 참여하여 고객 통합 인사이트 도출 및 마케팅 시너지 창출.</li>
+                <li><strong>차세대 커머스 시스템 PI:</strong> 상품 소싱부터 방송 송출까지 전체 밸류체인의 프로세스 비효율을 진단하고, 시스템 재설계를 통해 운영 비용 절감 및 업무 효율성 30% 개선.</li>
             </ul>
         </div>
 
@@ -340,9 +165,9 @@
                 <span class="position">Assistant Manager | 편성전략팀 & 법인설립팀</span>
             </div>
             <ul class="exp-desc">
-                <li><strong>데이터 기반 편성 최적화 전략:</strong> 시청률 및 매출 데이터 분석에 기반한 시간대별 최적 상품 편성 전략 수립으로 채널 퍼포먼스(취급고) 극대화.</li>
-                <li><strong>대형 대외 협력 프로젝트 기획:</strong> 중기부 주관 '브랜드 K' 런칭쇼, '같이펀딩' 등 범국가적 미디어 커머스 프로젝트의 기획 및 운영 총괄.</li>
-                <li><strong>신규 법인 설립 및 초기 인프라 구축:</strong> 법인 설립 초기 단계부터 참여하여 사업 계획 수립, 대관 업무, 운영 시스템 셋업 등 비즈니스 기반 마련.</li>
+                <li><strong>국가 대형 프로젝트 기획:</strong> '브랜드 K', '같이펀딩' 등 정부-미디어 협력 프로젝트의 기획 및 운영을 총괄하여 국가 정책 수행 및 매출 성과 창출.</li>
+                <li><strong>데이터 기반 편성 최적화:</strong> 시청률 및 매출 데이터 분석에 기반한 시간대별 최적 상품 편성 전략 수립으로 채널 퍼포먼스(취급고) 극대화.</li>
+                <li><strong>신규 법인 설립 참여:</strong> 법인 설립 초기 단계부터 참여하여 사업 계획 수립, 대관 업무, 운영 시스템 셋업 등 비즈니스 기반 마련.</li>
             </ul>
         </div>
 
@@ -353,65 +178,97 @@
                 <span class="position">Staff | 경영지원팀</span>
             </div>
             <ul class="exp-desc">
-                <li><strong>IR 및 경영 공시 대응:</strong> 주주총회 지원, 정기 경영 공시, 기업 설명회(IR) 자료 작성 및 대응 업무 수행.</li>
-                <li><strong>사업부별 관리 손익 분석:</strong> 공항별/사업부별 수익성 분석을 통해 저효율 사업장을 식별하고 개선 방안 도출.</li>
+                <li>IR 공시 대응, 주주총회 지원 및 사업부별 관리손익 분석 수행.</li>
             </ul>
         </div>
     </section>
 
     <section id="projects">
         <h2>Key Projects</h2>
+
+        <div class="project-card">
+            <div class="project-img-area">
+                <img src="brandk.jpg" alt="브랜드 K 런칭쇼">
+            </div>
+            <div class="project-content">
+                <div class="project-title">국가대표 공동브랜드 'Brand K' 런칭쇼</div>
+                <span class="project-tag">National Project</span>
+                <span class="project-tag">Media Commerce</span>
+                <p class="project-desc">
+                    중소벤처기업부 주관 대한민국 국가대표 공동브랜드 런칭쇼 기획 및 편성 총괄. 
+                    장관 출연 라이브 커머스 프로그램을 기획하여 중소기업 우수 제품의 판로를 개척하고, 국가 정책 이벤트의 성공적 이행을 주도했습니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img-area">
+                <img src="funding.jpg" alt="같이펀딩 태극기함 프로젝트">
+            </div>
+            <div class="project-content">
+                <div class="project-title">MBC 예능 '같이펀딩' 태극기함 프로젝트</div>
+                <span class="project-tag">Collaboration</span>
+                <span class="project-tag">Social Impact</span>
+                <p class="project-desc">
+                    MBC(김태호PD), 11번가와 협업한 대형 미디어 커머스 프로젝트. 
+                    유준상 배우와 함께한 '태극기함' 크라우드 펀딩을 홈쇼핑 라이브로 연결하여, 태극기 1만 개 완판 기록 및 사회적 가치를 창출했습니다.
+                </p>
+            </div>
+        </div>
         
         <div class="project-card">
-            <div class="project-title">AI 개인화 방송 시스템 (Revenue Innovation)</div>
-            <span class="project-tag">Business Planning</span>
-            <span class="project-tag">AI Service</span>
-            <p class="project-desc">
-                방송 시간의 물리적 제약으로 인한 매출 정체 문제를 해결하기 위해 기획된 프로젝트입니다. 
-                고객 행동 데이터를 분석하여 세그먼트 타겟팅 전략을 수립하고, 개인화 추천 알고리즘을 방송 송출 시스템에 적용했습니다. 
-                이를 통해 고객별 맞춤형 상품 노출이 가능해졌으며, 구매 전환율 상승 및 전사 매출 증대에 기여했습니다.
-            </p>
+            <div class="project-content">
+                <div class="project-title">AI 송출 다원화 프로젝트</div>
+                <span class="project-tag">Business Planning</span>
+                <span class="project-tag">AI Service</span>
+                <p class="project-desc">
+                    단일 채널 송출의 한계를 극복하기 위해 그룹사 데이터를 연계한 송출 다원화 시스템을 구축했습니다. 
+                    고객별 시청 패턴과 행동 데이터를 분석하여 최적의 송출 경로를 매칭하는 알고리즘을 도입, 플랫폼 확장성 확보 및 전사 매출 증대에 기여했습니다.
+                </p>
+            </div>
         </div>
 
         <div class="project-card">
-            <div class="project-title">AI 수요 예측 기반 운영 최적화 (Cost Efficiency)</div>
-            <span class="project-tag">Operation Strategy</span>
-            <span class="project-tag">Predictive Model</span>
-            <p class="project-desc">
-                불규칙한 주문량 변동으로 인한 콜센터 인력 운영의 비효율을 개선하고자 추진했습니다. 
-                과거 판매 데이터와 시청 데이터를 결합한 AI 수요 예측 모델을 도입하여 상담 인력을 최적 배치했습니다. 
-                결과적으로 잉여 인력을 최소화하여 운영 비용을 절감하고, 피크 타임 응대율을 개선하여 판매 기회 손실을 방지했습니다.
-            </p>
+            <div class="project-content">
+                <div class="project-title">한계이익 시뮬레이션 시스템 구축</div>
+                <span class="project-tag">Strategic Planning</span>
+                <span class="project-tag">Profit Analysis</span>
+                <p class="project-desc">
+                    영업-물류-재무 데이터의 단절을 해소하고 '실시간 손익 분석'이 가능한 자동화 시스템을 기획했습니다.
+                    상품별 한계이익(Marginal Profit)을 사전에 시뮬레이션할 수 있는 구조를 설계하여, 방송 편성 의사결정의 정확도를 높이고 수익 중심의 운영 프로세스를 정착시켰습니다.
+                </p>
+            </div>
         </div>
 
         <div class="project-card">
-            <div class="project-title">차세대 커머스 프로세스 혁신 (Process Innovation)</div>
-            <span class="project-tag">Strategic Planning</span>
-            <span class="project-tag">System Architecture</span>
-            <p class="project-desc">
-                영업과 물류 데이터의 단절로 발생하는 중복 비용과 리스크를 해결하기 위해 차세대 시스템 PI를 주도했습니다.
-                복잡한 상품 등록 및 송출 프로세스를 간소화하고, 판매-비용 데이터를 연계하여 '실시간 손익 분석'이 가능한 자동화 시스템을 기획/구축했습니다. 
-                이를 통해 데이터 기반의 신속한 의사결정 체계를 마련했습니다.
-            </p>
+            <div class="project-content">
+                <div class="project-title">콜센터 상담원 최적화 프로젝트</div>
+                <span class="project-tag">Operation Strategy</span>
+                <span class="project-tag">Predictive Model</span>
+                <p class="project-desc">
+                    불규칙한 주문량 변동에 대응하기 위해 과거 판매 및 시청 데이터를 결합한 AI 수요 예측 모델을 도입했습니다. 
+                    정교한 예측을 기반으로 상담 인력을 최적 배치하여 잉여 인력을 최소화하고, 피크 타임 고객 응대율을 개선하여 운영 효율을 극대화했습니다.
+                </p>
+            </div>
         </div>
     </section>
 
     <section id="education">
         <h2>Education</h2>
         <div class="edu-item">
-            <div class="edu-school">서강대학교 (Sogang Univ.)</div>
-            <div class="edu-degree">AI·SW대학원 데이터사이언스 석사</div>
-            <div class="edu-detail">2022.03 - 2024.08 | AI 비즈니스 모델링 및 데이터 분석 연구</div>
+            <div class="edu-info">
+                <div class="edu-school">서강대학교 (Sogang Univ.)</div>
+                <div class="edu-degree">AI·SW대학원 데이터사이언스 석사</div>
+            </div>
+            <div class="edu-date">2024.08 졸업</div>
         </div>
         <div class="edu-item">
-            <div class="edu-school">한국외국어대학교 (HUFS)</div>
-            <div class="edu-degree">법학과 학사</div>
-            <div class="edu-detail">2010.03 - 2012.02</div>
+            <div class="edu-info">
+                <div class="edu-school">한국외국어대학교 (HUFS)</div>
+                <div class="edu-degree">법학과 학사</div>
+            </div>
+            <div class="edu-date">2012.02 졸업</div>
         </div>
-    </section>
-
-    <section class="contact-section">
-        <a href="mailto:smile4menow@naver.com" class="btn-contact">Contact Me</a>
     </section>
 
     <footer>
