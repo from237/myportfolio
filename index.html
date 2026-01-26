@@ -4,30 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>김종백 | Business Strategy & AI Portfolio</title>
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
+        /* [안전 모드] 
+           외부 폰트/아이콘 로딩 없이 시스템 기본 폰트 사용 
+        */
         :root {
-            --primary-dark: #0f172a;   
-            --primary-main: #1e293b;   
-            --accent-color: #2563eb;   
-            --text-main: #334155;      
-            --text-light: #64748b;     
-            --bg-light: #f8fafc;       
+            --primary-dark: #0f172a;
+            --primary-main: #1e293b;
+            --accent-color: #2563eb;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
             --white: #ffffff;
             --border: #e2e8f0;
-            --success: #059669;        
+            --success: #059669;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Pretendard', sans-serif;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-light);
             color: var(--text-main);
             line-height: 1.6;
@@ -37,94 +33,60 @@
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
-        /* --- Hero Section --- */
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--primary-dark) 0%, #1e3a8a 100%);
             color: var(--white);
             padding: 80px 20px 100px;
             text-align: center;
-            position: relative;
         }
 
-        .hero-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        .hero-container { max-width: 800px; margin: 0 auto; }
 
         .profile-thumb {
             width: 130px;
             height: 130px;
             border-radius: 50%;
             border: 4px solid rgba(255,255,255,0.3);
-            object-fit: cover;
-            margin-bottom: 25px;
+            margin: 0 auto 25px;
             background-color: #cbd5e1;
-            /* 프로필 이미지 있으면 아래 경로 수정 */
+            /* 이미지가 없으면 회색 원으로 표시됨 */
             background-image: url('profile.jpg'); 
             background-size: cover;
             background-position: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
-        .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            line-height: 1.3;
-        }
-
-        .hero .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-weight: 400;
-            margin-bottom: 15px;
-            color: #bfdbfe;
-        }
-
-        .hero .email-info {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 30px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.1);
+        .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 10px; line-height: 1.3; }
+        .hero .subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 15px; color: #bfdbfe; }
+        
+        .email-info {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
             padding: 8px 16px;
             border-radius: 20px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
         }
 
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
+        .hero-btns { display: flex; gap: 15px; justify-content: center; }
         .btn {
             padding: 12px 28px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
             background-color: var(--accent-color);
             color: var(--white);
             box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            transition: transform 0.2s;
         }
-
         .btn:hover { transform: translateY(-2px); }
 
-        /* --- Main Layout --- */
+        /* Layout */
         .container {
             max-width: 900px;
             margin: -60px auto 0;
             padding: 0 20px 60px;
             position: relative;
-            z-index: 3;
+            z-index: 2;
         }
 
         section {
@@ -142,193 +104,109 @@
             margin-bottom: 30px;
             padding-bottom: 15px;
             border-bottom: 2px solid var(--bg-light);
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
-        
-        .section-title i { color: var(--accent-color); font-size: 1.2rem; }
 
-        /* --- About & Skills --- */
-        .about-text {
-            font-size: 1.05rem;
-            color: var(--text-main);
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
+        /* About */
+        .about-text { margin-bottom: 20px; font-size: 1.05rem; }
         .about-text strong { color: var(--accent-color); }
-
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
         .skill-badge {
             background-color: #eff6ff;
             color: var(--accent-color);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.9rem;
             font-weight: 600;
             border: 1px solid #dbeafe;
         }
 
-        /* --- Timeline --- */
-        .timeline {
-            position: relative;
-            padding-left: 10px;
-        }
-
+        /* Timeline */
+        .timeline { padding-left: 10px; }
         .timeline-item {
-            position: relative;
-            padding-left: 35px;
-            padding-bottom: 50px;
+            padding-left: 30px;
+            padding-bottom: 40px;
             border-left: 2px solid #e2e8f0;
+            position: relative;
         }
-
-        .timeline-item:last-child { border-left-color: transparent; padding-bottom: 0; }
-
+        .timeline-item:last-child { border-left-color: transparent; }
         .timeline-dot {
-            position: absolute;
-            left: -9px;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            border: 4px solid var(--white);
+            position: absolute; left: -9px; top: 0;
+            width: 16px; height: 16px; border-radius: 50%;
+            background: var(--accent-color); border: 4px solid #fff;
             box-shadow: 0 0 0 1px var(--accent-color);
         }
+        .job-period { display: block; color: var(--accent-color); font-weight: 700; font-size: 0.9rem; margin-bottom: 5px; }
+        .job-title { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); }
+        .job-company { color: var(--text-light); font-size: 1rem; margin-bottom: 10px; display: block; }
+        .job-desc li { margin-bottom: 5px; font-size: 0.95rem; padding-left: 15px; position: relative; }
+        .job-desc li::before { content: "•"; position: absolute; left: 0; color: #cbd5e1; }
 
-        .job-header { margin-bottom: 12px; }
-        .job-period { font-size: 0.9rem; color: var(--accent-color); font-weight: 700; margin-bottom: 4px; display: block; }
-        .job-title { font-size: 1.25rem; font-weight: 700; color: var(--primary-dark); }
-        .job-company { font-size: 1.1rem; color: var(--text-light); font-weight: 500; }
-
-        .job-desc li {
-            position: relative;
-            padding-left: 15px;
-            margin-bottom: 6px;
-            font-size: 1rem;
-            color: var(--text-main);
-        }
-        .job-desc li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--text-light);
-        }
-
-        /* --- Projects --- */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
+        /* Projects Grid */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .project-card {
-            background: var(--white);
+            background: #fff;
             border: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
         }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
         .project-thumb {
-            width: 100%;
-            height: 180px;
-            background-color: #f1f5f9;
+            width: 100%; height: 180px;
+            background-color: #e2e8f0;
+            display: flex; align-items: center; justify-content: center;
+            color: #64748b; font-size: 0.9rem;
             overflow: hidden;
-            position: relative;
-            border-bottom: 1px solid var(--border);
             cursor: pointer;
         }
-        
-        .project-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
+        .project-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
         .project-thumb:hover img { transform: scale(1.05); }
-
-        .project-body { padding: 25px; flex: 1; display: flex; flex-direction: column; }
-        .project-title { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
         
-        .project-tags { margin-bottom: 15px; }
-        .p-tag { 
-            display: inline-block; 
-            font-size: 0.75rem; 
-            background: #f1f5f9; 
-            color: var(--text-light); 
-            padding: 4px 8px; 
-            border-radius: 4px; 
-            margin-right: 5px; margin-bottom: 5px;
+        .project-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .project-title { font-size: 1.15rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+        .project-tags span {
+            display: inline-block; font-size: 0.75rem; background: #f1f5f9;
+            color: var(--text-light); padding: 4px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 5px;
         }
-
-        .project-desc { font-size: 0.95rem; color: var(--text-main); margin-bottom: 20px; flex: 1; }
-
+        .project-desc { font-size: 0.95rem; margin-bottom: 15px; flex: 1; margin-top: 10px;}
         .project-result {
-            background-color: #f0fdf4;
-            border-left: 4px solid var(--success);
-            padding: 12px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            color: #166534;
+            background-color: #f0fdf4; border-left: 4px solid var(--success);
+            padding: 10px; border-radius: 4px; font-size: 0.9rem; color: #166534;
         }
-        .project-result strong { display: block; margin-bottom: 4px; font-weight: 700; }
 
-        /* --- Education --- */
-        .education-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #f1f5f9;
-        }
-        .education-item:last-child { border-bottom: none; }
-        
-        .ed-title { font-weight: 700; color: var(--primary-dark); }
-        .ed-sub { font-size: 0.9rem; color: var(--text-light); }
-        .ed-date { font-weight: 600; color: var(--accent-color); font-size: 0.9rem; }
+        /* Education */
+        .edu-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f1f5f9; }
+        .edu-item:last-child { border-bottom: none; }
+        .edu-title { font-weight: 700; color: var(--primary-dark); }
+        .edu-sub { font-size: 0.9rem; color: var(--text-light); }
+        .edu-date { font-weight: 600; color: var(--accent-color); font-size: 0.9rem; }
 
-        /* Mobile Responsive */
         @media (max-width: 768px) {
             .hero { padding: 60px 20px 80px; }
-            .hero h1 { font-size: 1.7rem; }
-            .container { padding: 0 15px 40px; }
-            section { padding: 25px; }
             .project-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 15px 40px; }
         }
 
         /* Modal */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-        .modal-content { max-width: 90%; max-height: 90%; border-radius: 5px; }
-        .close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; }
-    </script>
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+        .modal-content { max-width: 90%; max-height: 90%; }
+        .close-modal { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+    </style>
 </head>
 <body>
 
     <header class="hero">
         <div class="hero-container">
-            <div class="profile-thumb"></div> <h1>비즈니스와 기술을 잇는<br>13년 차 전략가, 김종백입니다.</h1>
+            <div class="profile-thumb">
+                </div>
+            <h1>비즈니스와 기술을 잇는<br>13년 차 전략가, 김종백입니다.</h1>
             <p class="subtitle">Business Planning & AI Strategy Manager</p>
             
             <div class="email-info">
-                <i class="fas fa-envelope"></i> smile4menow@naver.com
+                📧 smile4menow@naver.com
             </div>
 
             <div class="hero-btns">
-                <a href="#projects" class="btn btn-primary">
-                    <i class="fas fa-folder-open"></i> 프로젝트 보기
-                </a>
+                <a href="#projects" class="btn">📂 프로젝트 보기</a>
             </div>
         </div>
     </header>
@@ -336,7 +214,7 @@
     <div class="container">
         
         <section id="about">
-            <h2 class="section-title"><i class="fas fa-quote-left"></i> About Me</h2>
+            <h2 class="section-title">💬 About Me</h2>
             <p class="about-text">
                 <strong>"숫자로 증명하는 탄탄한 기획력"</strong><br>
                 전통적인 경영 기획과 손익(P&L) 관리 경험을 바탕으로 기업의 지속 가능한 성장을 설계합니다. 중장기 전략 수립부터 예산 통제, 성과 평가(KPI)에 이르는 경영 관리의 본질을 이해합니다.
@@ -345,8 +223,6 @@
                 <strong>"AI 기술을 비즈니스 언어로 통역하는 리더"</strong><br>
                 데이터 기반의 의사결정을 지원하고, 모호한 기술을 명확한 비즈니스 가치(Value)로 전환합니다. AI 도입 자체가 아닌, 이를 통한 '문제 해결'과 '프로세스 혁신(PI)'에 집중합니다.
             </p>
-
-            <h3 style="margin: 20px 0 10px; font-size:1.1rem; color:var(--primary-dark);">Core Competency</h3>
             <div class="skills-grid">
                 <span class="skill-badge">경영 전략/기획</span>
                 <span class="skill-badge">AI 비즈니스 모델링</span>
@@ -358,56 +234,44 @@
         </section>
 
         <section id="experience">
-            <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
-            
+            <h2 class="section-title">💼 Professional Experience</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="job-header">
-                        <span class="job-period">2019.12 - Present</span>
-                        <h3 class="job-title">SK 스토아 (SK Stoa)</h3>
-                        <span class="job-company">Manager | 경영기획팀 & 커머스기획팀</span>
-                    </div>
+                    <span class="job-period">2019.12 - Present</span>
+                    <div class="job-title">SK 스토아 (SK Stoa)</div>
+                    <span class="job-company">Manager | 경영기획팀 & 커머스기획팀</span>
                     <ul class="job-desc">
                         <li><strong>AI 신사업 전략:</strong> 시장 분석 기반 AI 도입 로드맵 설계 및 DX 핵심 과제 발굴</li>
                         <li><strong>경영 관리:</strong> 전사 중장기 사업계획 수립, 예산 통제 및 KPI 평가 체계 고도화</li>
                         <li><strong>프로세스 혁신(PI):</strong> 밸류체인별 비용 구조 분석 및 수익성 중심 프로세스 재설계</li>
                     </ul>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="job-header">
-                        <span class="job-period">2015.03 - 2019.12</span>
-                        <h3 class="job-title">공영홈쇼핑</h3>
-                        <span class="job-company">대리 | 편성전략팀 & 법인설립팀</span>
-                    </div>
+                    <span class="job-period">2015.03 - 2019.12</span>
+                    <div class="job-title">공영홈쇼핑</div>
+                    <span class="job-company">대리 | 편성전략팀 & 법인설립팀</span>
                     <ul class="job-desc">
                         <li><strong>데이터 기반 편성:</strong> 시청률/매출 데이터 분석을 통한 시간대별 상품 최적 배치(Slotting)</li>
                         <li><strong>영업 퍼포먼스 관리:</strong> 카테고리별 매출 목표 관리 및 프로모션 효율 분석</li>
                         <li><strong>정부 과제 수행:</strong> '브랜드 K' 런칭 등 주요 정책 지원 사업 성공적 수행</li>
                     </ul>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="job-header">
-                        <span class="job-period">2014.08 - 2015.02</span>
-                        <h3 class="job-title">홈쇼핑설립추진단</h3>
-                        <span class="job-company">사원 | 법인설립팀</span>
-                    </div>
+                    <span class="job-period">2014.08 - 2015.02</span>
+                    <div class="job-title">홈쇼핑설립추진단</div>
+                    <span class="job-company">사원 | 법인설립팀</span>
                     <ul class="job-desc">
                         <li><strong>신규 법인 설립:</strong> 중소기업 판로 지원 공공 홈쇼핑 설립 실무(사업승인, 정관, 인프라) 완수</li>
                     </ul>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="job-header">
-                        <span class="job-period">2012.01 - 2013.07</span>
-                        <h3 class="job-title">한국공항 (KAS)</h3>
-                        <span class="job-company">사원 | 경영지원팀</span>
-                    </div>
+                    <span class="job-period">2012.01 - 2013.07</span>
+                    <div class="job-title">한국공항 (KAS)</div>
+                    <span class="job-company">사원 | 경영지원팀</span>
                     <ul class="job-desc">
                         <li>IR 공시 대응, 주주총회 지원 및 사업부별 관리손익 분석 수행</li>
                     </ul>
@@ -416,18 +280,18 @@
         </section>
 
         <section id="projects">
-            <h2 class="section-title"><i class="fas fa-chart-line"></i> Key Projects</h2>
+            <h2 class="section-title">📈 Key Projects</h2>
             <div class="project-grid">
                 
                 <div class="project-card">
                     <div class="project-thumb" onclick="openModal(this)">
-                        <img src="tv_project.png" alt="AI 송출 다원화" onerror="this.src='https://via.placeholder.com/400x250?text=AI+Project'">
+                        <img src="tv_project.png" alt="AI 송출 다원화" onerror="this.style.display='none'; this.parentNode.innerText='이미지 없음'">
                     </div>
                     <div class="project-body">
-                        <h3 class="project-title">AI 송출 다원화 알고리즘</h3>
+                        <div class="project-title">AI 송출 다원화 알고리즘</div>
                         <div class="project-tags">
-                            <span class="p-tag">#Business Planning</span>
-                            <span class="p-tag">#AI Strategy</span>
+                            <span>#Business Planning</span>
+                            <span>#AI Strategy</span>
                         </div>
                         <p class="project-desc">고객 시청 패턴 데이터를 분석하여 최적의 송출 경로를 매칭하는 알고리즘 도입 및 시스템 구축.</p>
                         <div class="project-result">
@@ -439,13 +303,13 @@
 
                 <div class="project-card">
                     <div class="project-thumb" onclick="openModal(this)">
-                        <img src="call_project.png" alt="콜센터 AI" onerror="this.src='https://via.placeholder.com/400x250?text=Call+Center+AI'">
+                        <img src="call_project.png" alt="콜센터 AI" onerror="this.style.display='none'; this.parentNode.innerText='이미지 없음'">
                     </div>
                     <div class="project-body">
-                        <h3 class="project-title">콜센터 수요예측 및 인력 최적화</h3>
+                        <div class="project-title">콜센터 수요예측 및 인력 최적화</div>
                         <div class="project-tags">
-                            <span class="p-tag">#Operation Strategy</span>
-                            <span class="p-tag">#Predictive Model</span>
+                            <span>#Operation Strategy</span>
+                            <span>#Predictive Model</span>
                         </div>
                         <p class="project-desc">과거 판매/시청 데이터를 결합한 AI 주문 예측 모델 도입으로 상담 인력 배치 최적화.</p>
                         <div class="project-result">
@@ -457,13 +321,13 @@
 
                 <div class="project-card">
                     <div class="project-thumb" onclick="openModal(this)">
-                        <img src="profit.png" alt="한계이익 시뮬레이션" onerror="this.src='https://via.placeholder.com/400x250?text=Profit+Simulation'">
+                        <img src="profit.png" alt="한계이익 시뮬레이션" onerror="this.style.display='none'; this.parentNode.innerText='이미지 없음'">
                     </div>
                     <div class="project-body">
-                        <h3 class="project-title">한계이익 시뮬레이션 시스템</h3>
+                        <div class="project-title">한계이익 시뮬레이션 시스템</div>
                         <div class="project-tags">
-                            <span class="p-tag">#Financial Analysis</span>
-                            <span class="p-tag">#Automation</span>
+                            <span>#Financial Analysis</span>
+                            <span>#Automation</span>
                         </div>
                         <p class="project-desc">영업-물류-재무 데이터 연동을 통한 실시간 상품별 한계이익 시뮬레이션 구조 설계.</p>
                         <div class="project-result">
@@ -475,13 +339,13 @@
 
                 <div class="project-card">
                     <div class="project-thumb" onclick="openModal(this)">
-                        <img src="brandk.jpg" alt="Brand K" onerror="this.src='https://via.placeholder.com/400x250?text=Brand+K'">
+                        <img src="brandk.jpg" alt="Brand K" onerror="this.style.display='none'; this.parentNode.innerText='이미지 없음'">
                     </div>
                     <div class="project-body">
-                        <h3 class="project-title">국가대표 브랜드 'Brand K' 런칭</h3>
+                        <div class="project-title">국가대표 브랜드 'Brand K' 런칭</div>
                         <div class="project-tags">
-                            <span class="p-tag">#Gov Project</span>
-                            <span class="p-tag">#Marketing</span>
+                            <span>#Gov Project</span>
+                            <span>#Marketing</span>
                         </div>
                         <p class="project-desc">중소벤처기업부 주관 국가대표 공동브랜드 런칭쇼 생방송 기획 및 운영 총괄.</p>
                         <div class="project-result">
@@ -495,22 +359,22 @@
         </section>
 
         <section id="education">
-            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education & Certificate</h2>
+            <h2 class="section-title">🎓 Education & Certificate</h2>
             
-            <div class="education-item">
+            <div class="edu-item">
                 <div>
-                    <div class="ed-title">서강대학교 (Sogang Univ.)</div>
-                    <div class="ed-sub">AI·SW대학원 데이터사이언스 석사</div>
+                    <div class="edu-title">서강대학교 (Sogang Univ.)</div>
+                    <div class="edu-sub">AI·SW대학원 데이터사이언스 석사</div>
                 </div>
-                <div class="ed-date">2024.08</div>
+                <div class="edu-date">2024.08</div>
             </div>
             
-            <div class="education-item">
+            <div class="edu-item">
                 <div>
-                    <div class="ed-title">한국외국어대학교 (HUFS)</div>
-                    <div class="ed-sub">법학과 학사</div>
+                    <div class="edu-title">한국외국어대학교 (HUFS)</div>
+                    <div class="edu-sub">법학과 학사</div>
                 </div>
-                <div class="ed-date">2012.02</div>
+                <div class="edu-date">2012.02</div>
             </div>
 
             <div style="margin-top:20px; border-top: 1px dashed #e2e8f0; padding-top:20px;">
@@ -524,23 +388,22 @@
         </section>
 
         <section id="portfolio-links">
-            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Data Analytics Portfolio</h2>
-            <p style="margin-bottom: 20px; color: var(--text-light);">직접 기획하고 개발한 데이터 분석 웹 서비스입니다.</p>
+            <h2 class="section-title">💻 Data Analytics Portfolio</h2>
             
             <div class="project-grid">
-                <a href="https://ssgtv.netlify.app/" target="_blank" class="project-card" style="text-decoration:none;">
+                <a href="https://ssgtv.netlify.app/" target="_blank" class="project-card">
                     <div class="project-body">
-                        <h3 class="project-title" style="margin-bottom:5px;">📊 경쟁사 주력상품 분석 대시보드</h3>
+                        <div class="project-title">📊 경쟁사 주력상품 분석 대시보드</div>
                         <p class="project-desc">경쟁사 데이터를 크롤링하여 주력 상품 및 전략을 시각화한 대시보드</p>
-                        <span style="color:var(--accent-color); font-weight:600; font-size:0.9rem;">View Project &rarr;</span>
+                        <span style="color:var(--accent-color); font-weight:600;">View Project &rarr;</span>
                     </div>
                 </a>
 
-                <a href="https://seoul-real-estate-analysis-hwg8wnfpfud2kkzxgad6lx.streamlit.app/" target="_blank" class="project-card" style="text-decoration:none;">
+                <a href="https://seoul-real-estate-analysis-hwg8wnfpfud2kkzxgad6lx.streamlit.app/" target="_blank" class="project-card">
                     <div class="project-body">
-                        <h3 class="project-title" style="margin-bottom:5px;">🏠 서울 부동산/입시 상관관계 분석</h3>
+                        <div class="project-title">🏠 서울 부동산/입시 상관관계 분석</div>
                         <p class="project-desc">공공데이터(국토부/교육부)를 활용한 지역별 상관관계 분석 웹 서비스</p>
-                        <span style="color:var(--accent-color); font-weight:600; font-size:0.9rem;">View Project (Streamlit) &rarr;</span>
+                        <span style="color:var(--accent-color); font-weight:600;">View Project (Streamlit) &rarr;</span>
                     </div>
                 </a>
             </div>
@@ -549,7 +412,7 @@
     </div>
 
     <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close">&times;</span>
+        <span class="close-modal">&times;</span>
         <img class="modal-content" id="modalImg">
     </div>
 
@@ -557,7 +420,11 @@
         function openModal(element) {
             var modal = document.getElementById("imageModal");
             var modalImg = document.getElementById("modalImg");
+            
+            // 이미지가 없거나 '이미지 없음' 텍스트인 경우 모달 열지 않음
             var img = element.querySelector('img');
+            if (!img || img.style.display === 'none') return;
+
             modal.style.display = "flex";
             modalImg.src = img.src;
         }
