@@ -5,69 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>김종백 | Business Strategy & AI Portfolio</title>
     <style>
-        /* [시스템 폰트 사용] 로딩 속도 최적화 & 깨짐 방지 */
-        :root {
-            --primary-dark: #0f172a;
-            --primary-main: #1e293b;
-            --accent-color: #2563eb;
-            --text-main: #334155;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
-            --white: #ffffff;
-            --border: #e2e8f0;
-            --success: #059669;
-        }
-
+        /* 초기화 */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-main);
+            background-color: #f8fafc;
+            color: #334155;
             line-height: 1.6;
-            word-break: keep-all; /* 단어 단위 줄바꿈 (모바일 가독성 핵심) */
-            -webkit-text-size-adjust: 100%;
+            /* 텍스트 가독성 강제 설정 */
+            -webkit-text-size-adjust: 100%; 
         }
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
-        /* --- Hero Section --- */
+        /* 1. 상단 히어로 섹션 (단색 배경으로 변경하여 오류 방지) */
         .hero {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #1e3a8a 100%);
-            color: var(--white);
-            padding: 60px 20px 80px; /* 모바일 고려하여 상하 여백 조정 */
+            background-color: #0f172a; /* 진한 네이비 */
+            color: #ffffff;
+            padding: 60px 20px;
             text-align: center;
         }
 
         .hero-container { max-width: 800px; margin: 0 auto; }
 
+        /* 프로필 이미지 영역 */
         .profile-thumb {
-            width: 100px; /* 모바일에서 너무 크지 않게 100px로 조정 */
+            width: 100px;
             height: 100px;
             border-radius: 50%;
             border: 3px solid rgba(255,255,255,0.3);
             margin: 0 auto 20px;
-            background-color: #cbd5e1;
+            background-color: #cbd5e1; /* 이미지 없을 때 회색 */
+            /* 이미지 경로가 맞으면 아래 이미지가 뜸 */
             background-image: url('profile.jpg'); 
             background-size: cover;
             background-position: center;
         }
 
-        .hero h1 { 
-            font-size: 1.8rem; /* 모바일 기준 기본 사이즈 */
-            font-weight: 800; 
-            margin-bottom: 12px; 
-            line-height: 1.35; 
+        .hero h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            color: #ffffff;
         }
 
-        .hero .subtitle { 
-            font-size: 1rem; 
-            opacity: 0.9; 
-            margin-bottom: 20px; 
-            color: #bfdbfe; 
-            font-weight: 400; 
-            padding: 0 10px; /* 좌우 여백 확보 */
+        .hero .subtitle {
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            font-weight: 400;
         }
         
         .email-info {
@@ -77,6 +66,7 @@
             border-radius: 20px;
             margin-bottom: 25px;
             font-size: 0.9rem;
+            color: #ffffff;
         }
 
         .hero-btns { display: flex; gap: 10px; justify-content: center; }
@@ -85,47 +75,44 @@
             border-radius: 50px;
             font-weight: 600;
             font-size: 0.95rem;
-            background-color: var(--accent-color);
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-            transition: transform 0.2s;
+            background-color: #2563eb; /* 파란색 버튼 */
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
         }
-        .btn:hover { transform: translateY(-2px); }
 
-        /* --- Main Layout --- */
+        /* 2. 메인 컨텐츠 영역 */
         .container {
-            max-width: 900px;
-            margin: -40px auto 0; /* Hero 섹션과 겹치는 부분 축소 */
-            padding: 0 15px 40px; /* 좌우 패딩 15px로 모바일 최적화 */
-            position: relative;
-            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px; /* 좌우 여백 */
         }
 
         section {
-            background: var(--white);
-            border-radius: 12px; /* 둥글기 살짝 축소 */
-            padding: 25px 20px; /* 내부 여백 줄임 (모바일 공간 확보) */
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0; /* 테두리 추가 */
         }
 
         .section-title {
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: var(--primary-dark);
+            color: #0f172a;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--bg-light);
+            border-bottom: 2px solid #f1f5f9;
         }
 
-        /* --- About --- */
+        /* About 스타일 */
         .about-text { margin-bottom: 15px; font-size: 0.95rem; text-align: justify; }
-        .about-text strong { color: var(--accent-color); font-weight: 700; }
+        .about-text strong { color: #2563eb; font-weight: 700; }
         
         .skills-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 15px; }
         .skill-badge {
             background-color: #eff6ff;
-            color: var(--accent-color);
+            color: #2563eb;
             padding: 5px 10px;
             border-radius: 6px;
             font-size: 0.85rem;
@@ -133,99 +120,90 @@
             border: 1px solid #dbeafe;
         }
 
-        /* --- Timeline (Mobile Optimized) --- */
+        /* 타임라인 (경력) */
         .timeline { padding-left: 5px; }
         .timeline-item {
-            padding-left: 20px; /* 왼쪽 여백 축소 */
+            padding-left: 20px;
             padding-bottom: 30px;
             border-left: 2px solid #e2e8f0;
             position: relative;
         }
         .timeline-item:last-child { border-left-color: transparent; padding-bottom: 0; }
         .timeline-dot {
-            position: absolute; left: -7px; top: 0; /* 점 크기 살짝 축소 */
+            position: absolute; left: -7px; top: 0;
             width: 12px; height: 12px; border-radius: 50%;
-            background: var(--accent-color); border: 3px solid #fff;
-            box-shadow: 0 0 0 1px var(--accent-color);
+            background: #2563eb; 
+            border: 3px solid #fff;
         }
-        .job-period { display: block; color: var(--accent-color); font-weight: 700; font-size: 0.85rem; margin-bottom: 2px; }
-        .job-title { font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); }
-        .job-company { color: var(--text-light); font-size: 0.9rem; margin-bottom: 8px; display: block; }
-        .job-desc li { margin-bottom: 4px; font-size: 0.9rem; padding-left: 12px; position: relative; color: #475569; }
+        .job-period { display: block; color: #2563eb; font-weight: 700; font-size: 0.85rem; margin-bottom: 2px; }
+        .job-title { font-size: 1.1rem; font-weight: 700; color: #0f172a; }
+        .job-company { color: #64748b; font-size: 0.9rem; margin-bottom: 8px; display: block; }
+        .job-desc li { margin-bottom: 4px; font-size: 0.9rem; padding-left: 12px; position: relative; color: #334155; }
         .job-desc li::before { content: "•"; position: absolute; left: 0; color: #cbd5e1; }
 
-        /* --- Projects (1 Column on Mobile) --- */
+        /* 프로젝트 카드 (모바일 1열) */
         .project-grid { 
             display: grid; 
-            grid-template-columns: 1fr; /* 기본 모바일: 1열 */
+            grid-template-columns: 1fr; 
             gap: 20px; 
         }
         
         .project-card {
             background: #fff;
-            border: 1px solid var(--border);
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
             overflow: hidden;
-            display: flex; flex-direction: column;
         }
         .project-thumb {
-            width: 100%; height: 160px; /* 높이 적절히 조절 */
+            width: 100%; height: 160px;
             background-color: #f1f5f9;
             display: flex; align-items: center; justify-content: center;
             color: #94a3b8; font-size: 0.85rem;
             overflow: hidden;
-            cursor: pointer;
             position: relative;
         }
         .project-thumb img { width: 100%; height: 100%; object-fit: cover; }
         
-        .project-body { padding: 18px; flex: 1; display: flex; flex-direction: column; }
-        .project-title { font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+        .project-body { padding: 18px; }
+        .project-title { font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
         .project-tags span {
             display: inline-block; font-size: 0.75rem; background: #f8fafc;
-            color: var(--text-light); padding: 3px 6px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px; border: 1px solid #e2e8f0;
+            color: #64748b; padding: 3px 6px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px; border: 1px solid #e2e8f0;
         }
-        .project-desc { font-size: 0.9rem; margin-bottom: 12px; flex: 1; margin-top: 8px; color: #475569; }
+        .project-desc { font-size: 0.9rem; margin-bottom: 12px; margin-top: 8px; color: #334155; }
         .project-result {
-            background-color: #f0fdf4; border-left: 3px solid var(--success);
-            padding: 8px 10px; border-radius: 4px; font-size: 0.85rem; color: #166534; line-height: 1.4;
+            background-color: #f0fdf4; border-left: 3px solid #166534;
+            padding: 10px; border-radius: 4px; font-size: 0.85rem; color: #166534;
         }
         .project-result strong { display: block; margin-bottom: 2px; }
 
-        /* --- Education --- */
-        .edu-item { display: flex; flex-direction: column; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+        /* 학력 */
+        .edu-item { padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
         .edu-item:last-child { border-bottom: none; }
-        .edu-title { font-weight: 700; color: var(--primary-dark); font-size: 1rem;}
-        .edu-sub { font-size: 0.9rem; color: var(--text-light); margin-bottom: 2px; }
-        .edu-date { font-weight: 600; color: var(--accent-color); font-size: 0.85rem; margin-top: 2px; }
+        .edu-title { font-weight: 700; color: #0f172a; font-size: 1rem;}
+        .edu-sub { font-size: 0.9rem; color: #64748b; }
+        .edu-date { font-weight: 600; color: #2563eb; font-size: 0.85rem; display: block; margin-top: 2px; }
 
-        /* --- Media Queries (PC 화면 대응) --- */
+        /* PC 화면 대응 (768px 이상일 때만 스타일 변경) */
         @media (min-width: 768px) {
-            .hero { padding: 80px 20px 100px; }
+            .hero { padding: 80px 20px; }
             .hero h1 { font-size: 2.2rem; }
-            .profile-thumb { width: 130px; height: 130px; }
-            
-            .container { padding: 0 20px 60px; margin-top: -60px; }
-            section { padding: 40px; }
-            
-            .project-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; } /* PC에선 2열 */
-            
-            .edu-item { flex-direction: row; justify-content: space-between; align-items: center; }
-            .edu-date { margin-top: 0; }
+            .container { max-width: 900px; padding: 40px 20px; }
+            .project-grid { grid-template-columns: 1fr 1fr; gap: 25px; } /* PC는 2열 */
+            .edu-item { display: flex; justify-content: space-between; align-items: center; }
         }
 
-        /* Modal */
+        /* 모달 팝업 */
         .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
-        .modal-content { max-width: 95%; max-height: 80vh; object-fit: contain; }
-        .close-modal { position: absolute; top: 15px; right: 20px; color: white; font-size: 35px; cursor: pointer; }
-    </script>
+        .modal-content { max-width: 90%; max-height: 80vh; }
+        .close-modal { position: absolute; top: 20px; right: 20px; color: white; font-size: 40px; cursor: pointer; }
+    </style>
 </head>
 <body>
 
     <header class="hero">
         <div class="hero-container">
-            <div class="profile-thumb">
-                </div>
+            <div class="profile-thumb"></div>
             
             <h1>비즈니스의 언어로 기술을 설계하는<br>김종백입니다.</h1>
             <p class="subtitle">데이터에서 문제를 발견하고,<br>실현 가능한 AI 전략으로 해결합니다.</p>
@@ -313,7 +291,7 @@
                 
                 <div class="project-card">
                     <div class="project-thumb" onclick="openModal(this)">
-                        <img src="tv_project.png" alt="AI 송출 다원화" onerror="this.style.display='none'; this.parentNode.innerText='이미지 없음'">
+                        <img src="tv_project.png" alt="AI 송출 다원화" onerror="this.style.display='none'">
                     </div>
                     <div class="project-body">
                         <div class="project-title">AI 송출 다원화 알고리즘</div>
@@ -331,7 +309,7 @@
 
                 <div class="project-card">
                     <div class="project-thumb" onclick="openModal(this)">
-                        <img src="call_project.png" alt="콜센터 AI" onerror="this.style.display='none'; this.parentNode.innerText='이미지 없음'">
+                        <img src="call_project.png" alt="콜센터 AI" onerror="this.style.display='none'">
                     </div>
                     <div class="project-body">
                         <div class="project-title">콜센터 수요예측 인력 최적화</div>
@@ -349,7 +327,7 @@
 
                 <div class="project-card">
                     <div class="project-thumb" onclick="openModal(this)">
-                        <img src="profit.png" alt="한계이익 시뮬레이션" onerror="this.style.display='none'; this.parentNode.innerText='이미지 없음'">
+                        <img src="profit.png" alt="한계이익 시뮬레이션" onerror="this.style.display='none'">
                     </div>
                     <div class="project-body">
                         <div class="project-title">한계이익 시뮬레이션 시스템</div>
@@ -367,7 +345,7 @@
 
                 <div class="project-card">
                     <div class="project-thumb" onclick="openModal(this)">
-                        <img src="brandk.jpg" alt="Brand K" onerror="this.style.display='none'; this.parentNode.innerText='이미지 없음'">
+                        <img src="brandk.jpg" alt="Brand K" onerror="this.style.display='none'">
                     </div>
                     <div class="project-body">
                         <div class="project-title">국가대표 브랜드 'Brand K'</div>
@@ -423,7 +401,7 @@
                     <div class="project-body">
                         <div class="project-title">📊 경쟁사 주력상품 분석 대시보드</div>
                         <p class="project-desc">경쟁사 데이터를 크롤링하여 주력 상품 및 전략을 시각화한 대시보드</p>
-                        <span style="color:var(--accent-color); font-weight:600; font-size: 0.9rem;">View Project &rarr;</span>
+                        <span style="color:#2563eb; font-weight:600; font-size: 0.9rem;">View Project &rarr;</span>
                     </div>
                 </a>
 
@@ -431,7 +409,7 @@
                     <div class="project-body">
                         <div class="project-title">🏠 서울 부동산/입시 상관관계 분석</div>
                         <p class="project-desc">공공데이터(국토부/교육부)를 활용한 지역별 상관관계 분석 웹 서비스</p>
-                        <span style="color:var(--accent-color); font-weight:600; font-size: 0.9rem;">View Project &rarr;</span>
+                        <span style="color:#2563eb; font-weight:600; font-size: 0.9rem;">View Project &rarr;</span>
                     </div>
                 </a>
             </div>
@@ -448,10 +426,9 @@
         function openModal(element) {
             var modal = document.getElementById("imageModal");
             var modalImg = document.getElementById("modalImg");
-            
             var img = element.querySelector('img');
             if (!img || img.style.display === 'none') return;
-
+            
             modal.style.display = "flex";
             modalImg.src = img.src;
         }
