@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>김종백 | Business Portfolio</title>
+    <title>김종백 | 경영관리 & AX기획 전문가 Portfolio</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
         :root {
             --primary-color: #0f172a;
             --accent-color: #2563eb;
+            --ax-color: #059669; /* AX기획용 컬러 (그린) */
             --bg-color: #f8fafc;
             --text-main: #1e293b;
             --text-sub: #64748b;
@@ -55,7 +56,6 @@
             border: 4px solid rgba(255,255,255,0.2);
             margin: 0 auto 20px;
             object-fit: cover;
-            /* [수정] 프로필 사진 원복 */
             background-image: url('profile.jpg');
             background-size: cover;
             background-position: center;
@@ -72,20 +72,24 @@
 
         /* 본문 */
         .intro-text { font-size: 1rem; color: var(--text-main); text-align: justify; word-break: keep-all; }
-        .intro-text strong { color: var(--primary-color); font-weight: 700; font-size: 1.05rem; display: block; margin-bottom: 8px; margin-top: 15px; }
+        .intro-text strong { font-weight: 700; font-size: 1.05rem; display: block; margin-bottom: 8px; margin-top: 15px; }
+        .intro-text strong.mgt { color: var(--accent-color); }
+        .intro-text strong.ax { color: var(--ax-color); }
         .intro-text strong:first-child { margin-top: 0; }
         
         /* 스킬 */
         .skills-wrapper { display: flex; flex-wrap: wrap; gap: 10px; }
         .skill-tag { background-color: #f1f5f9; color: #334155; padding: 8px 14px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--border); }
+        .skill-tag.mgt { border-left: 3px solid var(--accent-color); }
+        .skill-tag.ax { border-left: 3px solid var(--ax-color); }
 
         /* 경력 */
         .timeline-item { position: relative; padding-left: 24px; padding-bottom: 40px; border-left: 2px solid #e2e8f0; }
         .timeline-item:last-child { padding-bottom: 0; border-left: 2px solid transparent; }
-        .timeline-item::before { content: ''; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; border-radius: 50%; background-color: var(--accent-color); border: 3px solid var(--white); box-shadow: 0 0 0 1px var(--accent-color); }
+        .timeline-item::before { content: ''; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; border-radius: 50%; background-color: var(--primary-color); border: 3px solid var(--white); box-shadow: 0 0 0 1px var(--primary-color); }
         
         .exp-header { margin-bottom: 12px; }
-        .period { display: block; font-size: 0.85rem; color: var(--accent-color); font-weight: 600; margin-bottom: 4px; }
+        .period { display: block; font-size: 0.85rem; color: var(--primary-color); font-weight: 600; margin-bottom: 4px; }
         
         /* 회사 로고 */
         .company-wrap { display: flex; align-items: center; margin-bottom: 8px; }
@@ -101,13 +105,17 @@
         .company { font-size: 1.15rem; font-weight: 700; color: var(--primary-color); }
 
         .position { font-size: 0.95rem; color: var(--text-sub); display: block; margin-top: 4px;}
-        .exp-desc li { font-size: 0.95rem; color: var(--text-main); margin-bottom: 8px; padding-left: 15px; position: relative; list-style: none; word-break: keep-all; }
-        .exp-desc li::before { content: '•'; position: absolute; left: 0; color: var(--accent-color); }
+        .exp-desc li { font-size: 0.95rem; color: var(--text-main); margin-bottom: 10px; padding-left: 15px; position: relative; list-style: none; word-break: keep-all; }
+        .exp-desc li::before { content: '•'; position: absolute; left: 0; color: #cbd5e1; }
+        
+        /* 업무 태그 (경영관리 / AX기획) */
+        .task-tag { font-size: 0.75rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-right: 6px; display: inline-block; vertical-align: text-bottom;}
+        .task-mgt { background-color: #eff6ff; color: var(--accent-color); border: 1px solid #bfdbfe; }
+        .task-ax { background-color: #ecfdf5; color: var(--ax-color); border: 1px solid #a7f3d0; }
 
         /* 프로젝트 카드 */
         .project-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 30px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
         
-        /* 이미지 영역 (클릭 확대 지원) */
         .project-img-area { 
             width: 100%; 
             height: auto; 
@@ -122,49 +130,34 @@
             object-fit: contain; 
             display: block; 
         }
-        .project-img-area::after {
-            content: '🔍 클릭하여 확대';
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.6);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-        .project-img-area:hover::after { opacity: 1; }
-
         .project-content { padding: 25px; }
         .project-title { font-size: 1.15rem; font-weight: 700; color: var(--primary-color); margin-bottom: 10px; }
-        .project-tag { display: inline-block; font-size: 0.75rem; background-color: #eff6ff; color: var(--accent-color); padding: 5px 10px; border-radius: 4px; font-weight: 600; margin-bottom: 15px; margin-right: 4px; }
+        .project-tag { display: inline-block; font-size: 0.75rem; padding: 5px 10px; border-radius: 4px; font-weight: 600; margin-bottom: 15px; margin-right: 4px; }
+        .project-tag.mgt { background-color: #eff6ff; color: var(--accent-color); }
+        .project-tag.ax { background-color: #ecfdf5; color: var(--ax-color); }
         .project-desc { font-size: 1rem; color: var(--text-main); text-align: justify; word-break: keep-all; line-height: 1.6; }
 
-        /* 리스트 아이템 (학력, 자격증, 포트폴리오) */
+        /* 리스트 아이템 */
         .list-item { margin-bottom: 18px; display: flex; justify-content: space-between; align-items: baseline; }
         .list-info { flex: 1; }
         .list-title { font-size: 1.05rem; font-weight: 700; color: var(--primary-color); }
         .list-sub { font-size: 0.9rem; color: var(--text-sub); margin-top: 4px; }
-        .list-date { font-size: 0.9rem; color: var(--accent-color); font-weight: 600; white-space: nowrap; margin-left: 15px; }
+        .list-date { font-size: 0.9rem; color: var(--primary-color); font-weight: 600; white-space: nowrap; margin-left: 15px; }
         
-        /* 링크 스타일 */
         .portfolio-link {
             display: inline-flex;
             align-items: center;
             margin-top: 8px;
             font-size: 0.9rem;
-            color: var(--accent-color);
+            color: var(--primary-color);
             text-decoration: none;
             font-weight: 600;
             padding: 6px 12px;
-            background-color: #eff6ff;
+            background-color: #f1f5f9;
             border-radius: 6px;
             transition: background-color 0.2s;
         }
-        .portfolio-link:hover { background-color: #dbeafe; }
+        .portfolio-link:hover { background-color: #e2e8f0; }
 
         footer { text-align: center; padding: 40px 20px 20px; font-size: 0.8rem; color: #94a3b8; background-color: #fff; }
 
@@ -183,25 +176,8 @@
             align-items: center;
             animation: fadeIn 0.2s;
         }
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 95%;
-            max-height: 95%;
-            border-radius: 5px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
-        }
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-            z-index: 1001;
-        }
+        .modal-content { margin: auto; display: block; max-width: 95%; max-height: 95%; border-radius: 5px; }
+        .close { position: absolute; top: 20px; right: 30px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
         @keyframes fadeIn { from {opacity: 0} to {opacity: 1} }
     </style>
 </head>
@@ -211,93 +187,86 @@
     <header>
         <div class="profile-img"></div>
         <h1>김종백 (Jongbaek Kim)</h1>
-        <div class="role">Business Planning & AI Strategy Manager</div>
-        <div class="tagline">"비즈니스와 기술을 잇는 전략 통역사"</div>
+        <div class="role">Corporate Management & AX Planning Expert</div>
+        <div class="tagline">"데이터와 AI 기술로 비즈니스 성장과 수익성을 설계합니다"</div>
     </header>
 
     <section id="about">
         <h2>About Me</h2>
         <p class="intro-text">
-            <strong>"숫자로 증명하는 탄탄한 기획력"</strong>
-            전통적인 경영 기획과 손익(P&L) 관리 경험을 바탕으로 기업의 지속 가능한 성장을 설계합니다. 중장기 전략 수립부터 예산 통제, 성과 평가(KPI)에 이르는 경영 관리의 본질을 이해하며, 데이터에 기반한 냉철한 분석으로 실질적인 수익 구조 개선을 이끌어냅니다.
-            <br>
-            <strong>"비즈니스와 기술을 잇는 전략 통역사"</strong>
-            이러한 비즈니스 감각 위에 AI와 데이터 기술을 접목하여 새로운 가치를 창출합니다. 모호한 비즈니스 요구사항을 명확한 기술 언어로 번역하여 개발 조직과 긴밀히 소통하고, 기술 도입 자체가 아닌 '문제 해결'과 '프로세스 혁신(PI)'에 집중하는 AI 비즈니스 모델을 실현합니다.
+            10년 이상의 커머스 사업기획/경영기획 경험과 데이터 사이언스 석사 전문성을 결합하여, AI 기술로 비즈니스의 수익성을 개선하고 미래 성장을 설계하는 전략 전문가입니다[cite: 2].
+            
+            <strong class="mgt">💼 [경영관리] 내실 있는 기업 경영과 자원 최적화</strong>
+            연간 경영계획 및 중장기 사업 전략을 수립하고, BM별 관리손익 체계를 운영합니다[cite: 2]. 전사 KPI 기준 설계 및 성과 관리를 주도하여 목표 달성을 위한 최적의 경영 전략을 수립합니다[cite: 2].
+            
+            <strong class="ax">🚀 [AX기획] AI 기술 기반의 비즈니스 프로세스 혁신</strong>
+            데이터를 활용하여 실시간 판매 전략을 기획하며, AI 개인화 방송 및 수요 예측 기반 콜센터 최적화 등 데이터 기반 의사결정 시스템(PI)을 고도화하여 실질적인 손익 개선을 이끌어냅니다[cite: 2].
         </p>
     </section>
 
     <section id="skills">
         <h2>Core Competency</h2>
         <div class="skills-wrapper">
-            <span class="skill-tag">관리손익</span>
-            <span class="skill-tag">AI사업전략</span>
-            <span class="skill-tag">기술기반 업무혁신(DX)</span>
-            <span class="skill-tag">Process Innovation (PI)</span>
-            <span class="skill-tag">사업분석</span>
-            <span class="skill-tag">Python/SQL 데이터분석</span>
+            <span class="skill-tag mgt">연간 경영계획 / 중장기 전략 수립</span>
+            <span class="skill-tag mgt">BM별 관리손익 / 예산 편성</span>
+            <span class="skill-tag mgt">전사 성과 관리(KPI) 거버넌스</span>
+            <span class="skill-tag ax">AI 개인화 및 추천 서비스 기획</span>
+            <span class="skill-tag ax">AI 수요 예측 모델 도입</span>
+            <span class="skill-tag ax">데이터 사이언스 (Python/SQL)</span>
         </div>
     </section>
 
     <section id="experience">
         <h2>Professional Experience</h2>
         
+        <!-- SK 스토아 -->
         <div class="timeline-item">
             <div class="exp-header">
-                <span class="period">2019.12 - Present</span>
+                <span class="period">2019.12 - Present (6년 1개월)</span>
                 <div class="company-wrap">
                     <img src="logo_skstoa.png" alt="SK Stoa" class="company-logo" onerror="this.style.display='none'">
-                    <div class="company">SK 스토아 (SK Stoa)</div>
+                    <div class="company">SK스토아㈜ (SK Stoa)</div>
                 </div>
-                <span class="position"> Manager | 경영기획팀 & 커머스기획팀</span>
+                <span class="position">매니저 | 경영기획팀 / 커머스기획팀 / 편성기획팀</span>
             </div>
             <ul class="exp-desc">
-                <li><strong>경영 전략 및 전사 KPI 관리:</strong> 전사 중장기 사업계획 수립, 예산 통제 및 조직 성과 평가(KPI) 등 경영 기획 본연의 관리 체계 고도화 수행.</li>
-                <li><strong>AI 신사업 전략 및 DX 로드맵:</strong> 시장 환경 및 기술 트렌드 분석에 기반한 AI 도입 로드맵 설계, 디지털 전환(DX) 핵심 과제 발굴 및 이행 총괄.</li>
-                <li><strong>비용 분석 기반 혁신(PI) 리딩:</strong> 밸류체인별 비용 구조 분석을 통해 저효율을 진단하고, 차세대 시스템 구축 프로젝트를 주도하여 수익성 중심의 프로세스 재설계.</li>
+                <li><span class="task-tag task-mgt">경영관리</span> <strong>경영계획 및 손익 관리:</strong> 연간 경영계획 및 중장기 사업 전략 수립, 예산 편성, 월/분기 실적 분석 및 보고 수행[cite: 2]. BM별 관리손익 체계 운영 및 수익성 개선 과제 도출[cite: 2].</li>
+                <li><span class="task-tag task-mgt">경영관리</span> <strong>KPI 및 성과 관리:</strong> 전사 및 팀별 KPI 기준 수립, 성과 측정, 평가 및 보상 연계 지원[cite: 2]. ESG 성과 관리 및 변화 혁신 과제 발굴 주도[cite: 2].</li>
+                <li><span class="task-tag task-ax">AX기획</span> <strong>AI 개인화 방송 도입:</strong> 고객 데이터(시청/구매) 분석을 통해 개인화 방송 전략을 수립하여 연간 15만 분의 방송 시간을 확보하고 송출 상품 포트폴리오를 20% 확대(신규 매출원 확보)[cite: 2].</li>
+                <li><span class="task-tag task-ax">AX기획</span> <strong>콜센터 AI 수요 예측 최적화:</strong> 예측 모델 도입으로 주문 상담 비용을 N% 절감하여 콜센터 손익 구조 개선에 직접 기여[cite: 2].</li>
+                <li><span class="task-tag task-ax">AX기획</span> <strong>차세대 방송 시스템 구축:</strong> 한계이익 예측 모델을 도입하여 데이터 기반의 의사결정 시스템 고도화 및 판매 프로세스 혁신[cite: 2].</li>
             </ul>
         </div>
 
+        <!-- 공영홈쇼핑 -->
         <div class="timeline-item">
             <div class="exp-header">
-                <span class="period">2015.03 - 2019.12</span>
+                <span class="period">2015.03 - 2019.12 (4년 9개월)</span>
                 <div class="company-wrap">
                     <img src="gongyoung.jpg" alt="공영홈쇼핑" class="company-logo" onerror="this.style.display='none'">
-                    <div class="company">공영홈쇼핑</div>
+                    <div class="company">㈜공영홈쇼핑</div>
                 </div>
-                <span class="position"> 대리 | 편성전략팀 & 법인설립팀</span>
+                <span class="position">대리 | 편성전략팀 / 법인설립팀</span>
             </div>
             <ul class="exp-desc">
-                <li><strong>데이터 기반 생방송 편성 전략:</strong> 시청률 및 매출 데이터 분석을 통해 시간대별 최적 상품 편성(Slotting) 전략 수립 및 프라임타임 효율 극대화.</li>
-                <li><strong>영업 기획 및 퍼포먼스 관리:</strong> 카테고리별 매출 목표 수립 및 실적 모니터링, 프로모션 성과 분석을 통한 영업 이익 제고.</li>
-                <li><strong>정부 수명 업무 및 대외 협력:</strong> 중기부 산하 공공기관으로서 '브랜드 K' 런칭 등 주요 국정 과제 및 정책 지원 사업 성공적 수행.</li>
+                <li><span class="task-tag task-mgt">경영관리</span> <strong>초기 법인 설립 및 대외 프로젝트:</strong> 법인설립추진단 멤버로 인허가 및 초기 시스템 구축 세팅[cite: 2]. 대통령 참여 '브랜드 K' 론칭 및 '같이펀딩' 등 국가 단위 프로젝트 성공적 리딩[cite: 2].</li>
+                <li><span class="task-tag task-ax">AX기획</span> <strong>데이터 기반 편성 프로세스 구축:</strong> 상품 카테고리, 시즌, 시간대별 데이터 분석을 통한 생방송 편성 전략 수립[cite: 2]. 경험 의존적 방식 탈피 및 지속 가능한 성장 기반 구축[cite: 2].</li>
             </ul>
         </div>
 
+        <!-- 한국공항 -->
         <div class="timeline-item">
             <div class="exp-header">
-                <span class="period">2014.08 - 2015.02</span>
-                <div class="company-wrap">
-                    <img src="gongyoung.jpg" alt="설립추진단" class="company-logo" onerror="this.style.display='none'">
-                    <div class="company">홈쇼핑설립추진단</div>
-                </div>
-                <span class="position"> 사원 | 법인설립팀</span>
-            </div>
-            <ul class="exp-desc">
-                <li><strong>국가 정책 기반 신규 법인 설립:</strong> 중소기업 판로 지원을 위한 공공 홈쇼핑 설립 실무(사업 승인, 정관 작성, 초기 인프라 구축, 채용 등) 완수.</li>
-            </ul>
-        </div>
-
-        <div class="timeline-item">
-            <div class="exp-header">
-                <span class="period">2012.01 - 2013.07</span>
+                <span class="period">2012.01 - 2013.07 (1년 7개월)</span>
                 <div class="company-wrap">
                     <img src="kas.png" alt="한국공항" class="company-logo" onerror="this.style.display='none'">
-                    <div class="company">한국공항 (KAS)</div>
+                    <div class="company">한국공항㈜ (KAS)</div>
                 </div>
-                <span class="position"> 사원 | 경영지원팀</span>
+                <span class="position">사원 | 경영지원팀</span>
             </div>
             <ul class="exp-desc">
-                <li>IR 공시 대응, 주주총회 지원 및 사업부별 관리손익 분석 수행.</li>
+                <li><span class="task-tag task-mgt">경영관리</span> <strong>사업계획 및 공시(IR):</strong> 사업계획 수립, 실적 분석 및 금융감독원 분기/반기/감사보고서 공시 업무 수행 (오류 없는 공시로 신뢰도 유지)[cite: 2].</li>
+                <li><span class="task-tag task-mgt">경영관리</span> <strong>관리손익 분석:</strong> 산업 동향 및 공항별 관리손익 분석을 통해 계약 방향성 수립에 기여[cite: 2].</li>
             </ul>
         </div>
     </section>
@@ -307,75 +276,54 @@
 
         <div class="project-card">
             <div class="project-img-area" onclick="openModal(this)">
-                <img src="brandk.jpg" alt="Brand K 런칭쇼">
+                <img src="tv_project.png" alt="고객 데이터 기반 AI 개인화 방송">
             </div>
             <div class="project-content">
-                <div class="project-title">국가대표 공동브랜드 'Brand K' 런칭쇼</div>
-                <span class="project-tag">Government Project</span>
-                <span class="project-tag">Media Commerce</span>
+                <div class="project-title">고객 데이터 기반 AI 개인화 방송</div>
+                <span class="project-tag ax">AX기획</span>
                 <p class="project-desc">
-                    중소벤처기업부 주관 대한민국 국가대표 공동브랜드 런칭쇼 생방송 편성 총괄. 
-                    장관 출연 라이브 커머스 프로그램을 기획하여 중소기업 우수 제품의 판로를 개척하고, 국가 정책 이벤트의 성공적 이행을 주도했습니다.
+                    일률적 방송 송출 방식의 한계를 극복하기 위해 고객별 최적 매칭 전략을 수립했습니다[cite: 2]. 고객 그룹을 세분화(Segment)하고 AI 개인화 정책 및 송출 모델을 설계하여 연간 4% 추가 매출 창출 및 송출 상품 포트폴리오를 20% 확대했습니다[cite: 2].
                 </p>
             </div>
         </div>
 
         <div class="project-card">
             <div class="project-img-area" onclick="openModal(this)">
-                <img src="funding.jpg" alt="같이펀딩 태극기함">
+                <img src="call_project.png" alt="AI 수요 예측 기반 콜센터 운영 최적화">
             </div>
             <div class="project-content">
-                <div class="project-title">MBC 예능 '같이펀딩' 태극기함 프로젝트</div>
-                <span class="project-tag">Influencer Collaboration</span>
-                <span class="project-tag">Social Contribution</span>
+                <div class="project-title">AI 수요 예측 기반 콜센터 운영 최적화</div>
+                <span class="project-tag ax">AX기획</span>
+                <span class="project-tag mgt">경영관리 (비용절감)</span>
                 <p class="project-desc">
-                    MBC(김태호PD), 중소기업벤처부와 협업한 대형 미디어 커머스 프로젝트 생방송 편성 총괄.
-                    유준상 배우와 함께한 '태극기함' 크라우드 펀딩을 홈쇼핑 라이브로 연결하여, 태극기 1만 개 완판 기록 및 사회적 가치를 창출했습니다.
-                </p>
-            </div>
-        </div>
-        
-        <div class="project-card">
-            <div class="project-img-area" onclick="openModal(this)">
-                <img src="tv_project.png" alt="AI 송출 다원화">
-            </div>
-            <div class="project-content">
-                <div class="project-title">AI 송출 다원화 프로젝트</div>
-                <span class="project-tag">Business Planning</span>
-                <span class="project-tag">AI Service</span>
-                <p class="project-desc">
-                    단일 채널 송출의 한계를 극복하기 위해 그룹사 데이터를 연계한 송출 다원화 시스템을 구축했습니다. 
-                    고객별 시청 패턴과 행동 데이터를 분석하여 최적의 송출 경로를 매칭하는 알고리즘을 도입, 플랫폼 확장성 확보 및 전사 매출 증대에 기여했습니다.
+                    콜 인입량에 영향을 미치는 핵심 변수(Feature)를 분석하고, AI 예측 기반 '상담원 최적 배치 추천 테이블'을 기획했습니다[cite: 2]. 불필요한 대기 인력을 최소화하여 연간 주문 상담 비용을 대폭 절감하고 콜 응답률을 개선했습니다[cite: 2].
                 </p>
             </div>
         </div>
 
         <div class="project-card">
             <div class="project-img-area" onclick="openModal(this)">
-                <img src="profit.png" alt="한계이익 시뮬레이션">
+                <img src="profit.png" alt="차세대 방송 시스템 및 한계이익 모델 구축">
             </div>
             <div class="project-content">
-                <div class="project-title">한계이익 시뮬레이션 시스템 구축</div>
-                <span class="project-tag">Strategic Planning</span>
-                <span class="project-tag">Profit Analysis</span>
+                <div class="project-title">차세대 방송 시스템 구축 및 프로세스 혁신(PI)</div>
+                <span class="project-tag ax">AX기획</span>
+                <span class="project-tag mgt">경영관리 (전략)</span>
                 <p class="project-desc">
-                    영업-물류-재무 데이터의 단절을 해소하고 '실시간 손익 분석'이 가능한 자동화 시스템을 기획했습니다.
-                    상품별 한계이익(Marginal Profit)을 사전에 시뮬레이션할 수 있는 구조를 설계하여, 방송 편성 의사결정의 정확도를 높이고 수익 중심의 운영 프로세스를 정착시켰습니다.
+                    방송 전 과정의 병목을 분석하여 To-Be 프로세스를 설계하고, 예상 한계이익 자동 계산 모델 도입을 제안했습니다[cite: 2]. 단순 시스템 교체를 넘어 수익성 중심의 의사결정이 가능하도록 데이터 기반 체계를 고도화했습니다[cite: 2].
                 </p>
             </div>
         </div>
 
         <div class="project-card">
             <div class="project-img-area" onclick="openModal(this)">
-                <img src="call_project.png" alt="콜센터 상담원 최적화">
+                <img src="brandk.jpg" alt="Brand K 및 같이펀딩 대외 프로젝트">
             </div>
             <div class="project-content">
-                <div class="project-title">콜센터 상담원 최적화 프로젝트</div>
-                <span class="project-tag">Operation Strategy</span>
-                <span class="project-tag">Predictive Model</span>
+                <div class="project-title">국가 단위 대규모 커머스 이벤트 총괄</div>
+                <span class="project-tag mgt">경영관리</span>
                 <p class="project-desc">
-                    불규칙한 주문량 변동에 대응하기 위해 과거 판매 및 시청 데이터를 결합한 AI 수요 예측 모델을 도입했습니다. 
-                    정교한 예측을 기반으로 상담 인력을 최적 배치하여 잉여 인력을 최소화하고, 피크 타임 고객 응대율을 개선하여 운영 효율을 극대화했습니다.
+                    초기 창립 멤버로서 정부 및 공공기관 연계 프로젝트(대통령 참여 '브랜드 K' 론칭, '같이펀딩' 등)를 성공적으로 리딩하며, 비즈니스 가치 창출 및 공공 상징성을 동시에 확보했습니다[cite: 2].
                 </p>
             </div>
         </div>
@@ -386,16 +334,16 @@
         <div class="list-item">
             <div class="list-info">
                 <div class="list-title">서강대학교 (Sogang Univ.)</div>
-                <div class="list-sub">AI·SW대학원 데이터사이언스 석사</div>
+                <div class="list-sub">AI·SW대학원 데이터사이언스 전공[cite: 2]</div>
             </div>
-            <div class="list-date">2024.08 졸업</div>
+            <div class="list-date">2024.08 졸업 (석사)[cite: 2]</div>
         </div>
         <div class="list-item">
             <div class="list-info">
                 <div class="list-title">한국외국어대학교 (HUFS)</div>
-                <div class="list-sub">법학과 학사</div>
+                <div class="list-sub">법학과[cite: 2]</div>
             </div>
-            <div class="list-date">2012.02 졸업</div>
+            <div class="list-date">2012.02 졸업 (학사)[cite: 2]</div>
         </div>
     </section>
 
@@ -404,44 +352,37 @@
         <div class="list-item">
             <div class="list-info">
                 <div class="list-title">빅데이터분석기사</div>
-                <div class="list-sub">한국데이터산업진흥원</div>
+                <div class="list-sub">한국데이터산업진흥원[cite: 2]</div>
             </div>
-            <div class="list-date">2024.12</div>
+            <div class="list-date">2024.12[cite: 2]</div>
         </div>
         <div class="list-item">
             <div class="list-info">
-                <div class="list-title">ADsP(데이터분석준전문가)</div>
-                <div class="list-sub">한국데이터산업진흥원</div>
+                <div class="list-title">데이터분석 준전문가 (ADsP)</div>
+                <div class="list-sub">한국데이터산업진흥원[cite: 2]</div>
             </div>
-            <div class="list-date">2024.09</div>
+            <div class="list-date">2024.09[cite: 2]</div>
         </div>
         <div class="list-item">
             <div class="list-info">
                 <div class="list-title">SQL개발자</div>
-                <div class="list-sub">한국데이터산업진흥원</div>
+                <div class="list-sub">한국데이터산업진흥원[cite: 2]</div>
             </div>
-            <div class="list-date">2024.04</div>
+            <div class="list-date">2024.04[cite: 2]</div>
         </div>
         <div class="list-item">
             <div class="list-info">
                 <div class="list-title">한국사능력검정시험 1급</div>
-                <div class="list-sub">국사편찬위원회</div>
+                <div class="list-sub">국사편찬위원회[cite: 2]</div>
             </div>
-            <div class="list-date">2014.02</div>
+            <div class="list-date">2014.02[cite: 2]</div>
         </div>
         <div class="list-item">
             <div class="list-info">
-                <div class="list-title">한자자격시험 2급</div>
-                <div class="list-sub">한자교육진흥회</div>
+                <div class="list-title">한자자격검정 2급</div>
+                <div class="list-sub">한자교육진흥회[cite: 2]</div>
             </div>
-            <div class="list-date">2011.06</div>
-        </div>
-        <div class="list-item">
-            <div class="list-info">
-                <div class="list-title">MOS MASTER</div>
-                <div class="list-sub">Microsoft</div>
-            </div>
-            <div class="list-date">2008.02</div>
+            <div class="list-date">2011.06[cite: 2]</div>
         </div>
     </section>
 
@@ -451,7 +392,7 @@
         <div class="list-item">
             <div class="list-info">
                 <div class="list-title">V-리그(KOVO) 배구 시즌 데이터 및 선수 가치 분석</div>
-                <div class="list-sub">선수별 퍼포먼스 스탯과 연봉 데이터를 기반으로 한 대체 선수 대비 승리 기여도(WAR) 산출 대시보드</div>
+                <div class="list-sub">선수별 퍼포먼스 스탯과 연봉 데이터를 기반으로 한 대체 선수 대비 승리 기여도(WAR) 산출 대시보드[cite: 1, 3]</div>
                 <a href="https://kovo.netlify.app/" target="_blank" class="portfolio-link">
                     🔗 프로젝트 보러가기
                 </a>
@@ -462,7 +403,7 @@
         <div class="list-item">
             <div class="list-info">
                 <div class="list-title">경쟁사 주력상품 분석 페이지</div>
-                <div class="list-sub">경쟁사 데이터를 기반으로 주력 상품 및 전략을 시각화한 대시보드</div>
+                <div class="list-sub">경쟁사 데이터를 기반으로 주력 상품 및 전략을 시각화한 대시보드[cite: 1, 3]</div>
                 <a href="https://ssgtv.netlify.app/" target="_blank" class="portfolio-link">
                     🔗 프로젝트 보러가기
                 </a>
@@ -473,7 +414,7 @@
         <div class="list-item">
             <div class="list-info">
                 <div class="list-title">서울 부동산 딥다이브: 입시와 집값의 연결고리</div>
-                <div class="list-sub">공공데이터를 활용한 서울시 부동산/교육 상관관계 분석 웹 서비스</div>
+                <div class="list-sub">공공데이터를 활용한 서울시 부동산/교육 상관관계 분석 웹 서비스[cite: 1, 3]</div>
                 <a href="https://seoulestate.netlify.app/" target="_blank" class="portfolio-link">
                     🔗 프로젝트 보러가기
                 </a>
